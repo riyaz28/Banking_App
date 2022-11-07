@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Login } from './login';
 import DATA from '../data';
 import { Dashboard } from './Dashboard';
+import {UserDashboard} from './UserDashboard';
 
 export const Entry = () => {
     const [client, setClient] = useState(null);
@@ -50,13 +51,15 @@ export const Entry = () => {
     const logout = () => {
         setIsLoggedIn(false);
         setIsAdmin(false);
-        localStorage.removeItem('client')
+        localStorage.removeItem('currentUser')
         setNotif({message: 'You have logged out.', style: 'success'});
     }
     if(isLoggedIn) {
       localStorage.setItem('currentUser', JSON.stringify(client));
       if(isAdmin) {
         return <Dashboard users={clients} logoutHandler={logout} />
+      } else {
+        return <UserDashboard client={client} users={clients} setClient={setClient} logoutHandler={logout} />
       }
     }
       else{
