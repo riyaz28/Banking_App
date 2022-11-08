@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
+import React,{ useState } from "react";
+import {trim, formatNumber} from './UtilityFunctions';
+import { Notif } from "./Notif";
 
-const CreateAcc = (props) => {
+export const CreateAcc = (props) => {
     const createRandomAccount = () => {
-        return Math.floor(10000000 + Math.random() * 90000000);
+        return Math.floor(1000000000 + Math.random() * 9000000000);
     }
-
-    const [initialAccountNumber, setInitialAccountNumber] = useState(createRandomAccount());
-    const [initialBalance, setInitialBalance] = useState(0);
-    const clients = JSON.parse(localStorage.getItem('users'));
     
-
-
+    const [initialBalance, setInitialBalance] = useState(0);
+    const [notif, setNotif] = useState({message: 'Create a new client account.', style: 'left'});
+    const [initialAccountNumber, setInitialAccountNumber] = useState(createRandomAccount());
 
     const createNewAccount = (user) => {
-        const localUsers = clients;
-        //props.users
+
+        const emptyInputs = Object.values(user).filter(input => {
+            return input === ''
+        });
+
+        const localUsers = props.users;
 
         let alreadyExists = false;
         localUsers.forEach(row => {
@@ -24,18 +27,20 @@ const CreateAcc = (props) => {
         });
 
         if(alreadyExists) {
-            alert('Email already exists')
+            setNotif({message: 'This email already exists. Try again.', style: 'danger'});
             return false;
-        }
-        else {
+        } else if(emptyInputs.length > 0) {
+            setNotif({message: 'All fields are required.', style: 'danger'});
+            return false;
+        } else {
+            setNotif('');
             localUsers.unshift(user);
-            //props.setUsers(localUsers); 
+            props.setUsers(localUsers); 
             localStorage.setItem('users', JSON.stringify(localUsers));
-            alert('Successfully created')
+            setNotif({message: 'Successfully saved.', style: 'success'});
             return true;
         }
     }
-
 
     const handleCreateAccount = (event) => {
         event.preventDefault();
@@ -48,7 +53,7 @@ const CreateAcc = (props) => {
             type: user.accountType.value,
             number: user.accountNumber.value,
             isAdmin: false,
-            balance: user.initialBalance.value, 
+            balance: trim(user.initialBalance.value), 
             transactions: []
         }
 
@@ -61,35 +66,38 @@ const CreateAcc = (props) => {
             user.initialBalance.value = setInitialBalance(0);
         }
     }
-    
+
+    const onInitialBalance = event => {
+        const amount = trim(event.target.value) || 0;
+        setInitialBalance(amount);
+    }
+
     return (
+        <section id="main-content">
             <form id="form" onSubmit={handleCreateAccount}>
                 <h1>Create Account</h1>
-                
-                <label>Full name</label>
-                <input id="fullname" type="text" name="fullname" />
+                <Notif message={notif.message} style={notif.style} />
+                <label htmlFor="fullname">Full name</label>
+                <input id="fullname" type="text" autoComplete="off" name="fullname" />
                 <hr />
-                <label htmlFor="account-number">Account</label>
-                <input id="account-number" name="accountNumber"  type="number" value={initialAccountNumber} disable='true' />
+                <label htmlFor="account-number">Account # (Randomly Generated)</label>
+                <input id="account-number" name="accountNumber" className="right" value={initialAccountNumber} type="number" disabled />
 
-                <label >Initial balance</label>
-                <input id="balance" type="text"  name="initialBalance" />
+                <label htmlFor="balance">Initial balance</label>
+                <input id="balance" type="text" value={formatNumber(initialBalance)} onChange={onInitialBalance} name="initialBalance" className="right" />
 
                 <label htmlFor="account-type">Account Type</label>
                 <select name="accountType">
                     <option value="Checking Account">Checking Account</option>
                     <option value="Savings Accounts">Savings Account</option>
-                    <option value="Salary Accounts">Salary Account</option>
                 </select>
                 <hr />
-                <label >Email Address</label>
+                <label htmlFor="email">Email Address</label>
                 <input id="email" type="email" name="email" />
-                <label >Password</label>
+                <label htmlFor="password">Password</label>
                 <input id="password" type="password" name="password" />
                 <input value="Create Account" className="btn" type="submit" />
             </form>
-        
+        </section>
     )
 }
-
-export default CreateAcc;

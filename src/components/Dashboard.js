@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Sidebar } from "./Sidebar";
+import { SideNavbar } from "./SideNavbar";
 import { MainContent } from "./MainContent";
-import { CreateAccountPage } from "./CreateAccountPage";
-import { TransferPage } from "./TransferPage";
+import  {CreateAcc} from "./CreateAcc";
+import { TransferPage } from "./TransferFund";
 import { TransactPage } from "./TransactPage";
 
 export const Dashboard = (props) => {
@@ -71,7 +71,7 @@ export const Dashboard = (props) => {
     if(page === 'home') {
         return (
             <main>
-              <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
+              <SideNavbar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
               <MainContent users={users} editingUser={editingUser} 
                 setEditModal={setEditModal} 
                 setEditingUser={setEditingUser} setDeleteUser={setDeleteUser} />
@@ -83,8 +83,8 @@ export const Dashboard = (props) => {
     if(page === 'create-account') {
         return (
             <main>
-              <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
-              <CreateAccountPage users={users} setUsers={setUsers} />
+              <SideNavbar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
+              <CreateAcc users={users} setUsers={setUsers} />
             </main>
         )
     }
@@ -92,7 +92,7 @@ export const Dashboard = (props) => {
     if(page === 'transfer') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
+                <SideNavbar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
                 <TransferPage users={users} setUsers={setUsers} />
             </main>
         )
@@ -101,7 +101,7 @@ export const Dashboard = (props) => {
     if(page === 'deposit') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
+                <SideNavbar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
                 <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="add" page={page} />
             </main>
         )
@@ -110,7 +110,7 @@ export const Dashboard = (props) => {
     if(page === 'withdraw') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
+                <SideNavbar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
                 <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="subtract" page={page} />
             </main>
         )

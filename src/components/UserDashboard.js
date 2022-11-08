@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import { findAccount } from './UtilityFunctions';
 import {BudgetApp} from './BudgetApp';
 import {SideNavbar} from './SideNavbar';
-import {TransferFund} from './TransferFund';
-import {UserHome} from './UserHome';
+import {TransferPage} from './TransferFund';
+import {MainClientContent} from './UserHome';
 
 export const UserDashboard = (props) => {
     const { logoutHandler, client, setClient } = props;
@@ -20,7 +20,7 @@ export const UserDashboard = (props) => {
       return (
         <main>
           <SideNavbar changePage={changePageHandler} page={page} user={client} logoutHandler={logoutHandler} />
-          <UserHome user={client} />
+          <MainClientContent user={client} />
         </main>
       )
     }
@@ -38,7 +38,7 @@ export const UserDashboard = (props) => {
       return (
         <main>
           <SideNavbar changePage={changePageHandler} page={page} user={client} logoutHandler={logoutHandler} />
-          <TransferFund isClient="true" client={client} setClient={setClient} users={users} setUsers={setUsers}  />
+          <TransferPage isClient="true" client={client} setClient={setClient} users={users} setUsers={setUsers}  />
         </main>
       )
     }

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { formatNumber, getDateToday } from "./UtilityFunctions";
+import { Notif } from "./Notif";
 
-export const TransferFund = (props) => {
+export const TransferPage = (props) => {
     const {isClient, client, setClient} = props;
     const [users, setUsers] = useState(props.users); 
     const [receivers, setReceivers] = useState(users);
@@ -170,11 +171,4 @@ export const TransferFund = (props) => {
             </form>
         </section>
     )
-}
-
-  
-export const Notif = (props) => {
-  return (
-    <div className={`notif ${props.style}`}>{props.message}</div>
-  )
 }

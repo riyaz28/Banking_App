@@ -1,16 +1,23 @@
 import React from "react";
 import { formatNumber } from './UtilityFunctions';
+import { ActionButtons } from "./ActionButtons";
 
 export const AccountDetails = (props) => {
     
     const {type, accountNumber, balance, fullname, editingUser, setEditingUser, setDeleteUser, index, isAdmin, setEditModal} = props;
     
+    const action = isAdmin ? <ActionButtons index={index} 
+    editingUser={editingUser} 
+    setEditingUser={setEditingUser} 
+    setEditModal={setEditModal} setDeleteUser={setDeleteUser} /> : '';
+
     return (
       <div className="account">
           <div className="details">
               <AccountHolder fullname={fullname} />
               <AccountType type={type} />
               <AccountNumber accountNumber={accountNumber} />
+              {action}
           </div>
           <AccountBalance balance={formatNumber(balance)} />
       </div>

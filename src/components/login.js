@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-
-const Notify = (props) => {
-    return <div className={`notif ${props.style}`}>{props.message}</div>
-}
+import { Logo } from './Logo';
+import { Notif } from './Notif';
 
 export const Login = (props) => {
     const [username, setUsername] = useState('');
@@ -22,19 +20,19 @@ export const Login = (props) => {
         props.loginHandler(username, password);
       }
     
-    return (
-      <div id="login-page">
-        <div id="login">
-        <h1 id="logo"><i className='bx bxs-paper-plane' ></i> Avion Bank</h1>
-          <Notify message={props.notif.message} style={props.notif.style} />
-          <form onSubmit={onSubmitHandler}>
-            <label htmlFor="username">Username</label>
-            <input id="username" autoComplete="off" onChange={onChangeUsername}  value={username} type="text" />
-            <label htmlFor="password">Password</label>
-            <input id="password" autoComplete="off" onChange={onChangePassword} value={password} type="password" />
-            <button type="submit" className="btn">Login</button>
-          </form>
+      return (
+        <div id="login-page">
+          <div id="login">
+            <Logo />
+            <Notif message={props.notif.message} style={props.notif.style} />
+            <form onSubmit={onSubmitHandler}>
+              <label htmlFor="username">Username</label>
+              <input id="username" autoComplete="off" onChange={onChangeUsername}  value={username} type="text" />
+              <label htmlFor="password">Password</label>
+              <input id="password" autoComplete="off" onChange={onChangePassword} value={password} type="password" />
+              <button type="submit" className="btn">Login</button>
+            </form>
+          </div>
         </div>
-      </div>
-    )
-}
+      )
+  }
