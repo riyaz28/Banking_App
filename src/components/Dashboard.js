@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-
+import { Sidebar } from "./Sidebar";
+import { MainContent } from "./MainContent";
+import { CreateAccountPage } from "./CreateAccountPage";
+import { TransferPage } from "./TransferPage";
+import { TransactPage } from "./TransactPage";
 
 export const Dashboard = (props) => {
     const [page, setPage] = useState('home');
@@ -61,7 +65,7 @@ export const Dashboard = (props) => {
             accountName={user.fullname} 
             accountNumber={user.number} 
             balance={user.balance} setEditModal={setEditModal} 
-            setIsUpdate={setIsUpdate} setNewAccount={setNewAccount} setIsUpdate={setIsUpdate}  />
+            setIsUpdate={setIsUpdate} setNewAccount={setNewAccount} setisUpdate={setIsUpdate}  />
     }
 
     if(page === 'home') {
