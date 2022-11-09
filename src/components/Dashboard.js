@@ -3,7 +3,8 @@ import { SideNavbar } from "./SideNavbar";
 import { MainContent } from "./MainContent";
 import  {CreateAcc} from "./CreateAcc";
 import { TransferPage } from "./TransferFund";
-import { TransactPage } from "./TransactPage";
+import { DepositPage } from "./DepositPage";
+import Withdraw from "./Withdraw";
 
 export const Dashboard = (props) => {
     const [page, setPage] = useState('home');
