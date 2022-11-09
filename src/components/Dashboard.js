@@ -103,7 +103,7 @@ export const Dashboard = (props) => {
         return (
             <main>
                 <SideNavbar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
-                <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="add" page={page} />
+                <DepositPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="add" page={page} />
             </main>
         )
     }
@@ -112,7 +112,7 @@ export const Dashboard = (props) => {
         return (
             <main>
                 <SideNavbar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
-                <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="subtract" page={page} />
+                <DepositPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="subtract" page={page} />
             </main>
         )
     }
