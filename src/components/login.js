@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { Notif } from './Notif';
 
@@ -23,7 +24,7 @@ export const Login = (props) => {
       return (
         <div id="login-page">
           <div id="login">
-            <Logo />
+            <Link to ="/"><Logo /></Link>
             <Notif message={props.notif.message} style={props.notif.style} />
             <form onSubmit={onSubmitHandler}>
               <label htmlFor="username">Username</label>
