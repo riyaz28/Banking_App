@@ -8,3 +8,5 @@ Main contributors:
 
 Note:
 In this project, we are using the local web browser storage for storing user data.
+
+PPT link -https://docs.google.com/presentation/d/1hrpnVzTTCiuI3KP3C2WlET-jOPSXXB11_DvShYn7jwM/edit?usp=drivesdk
