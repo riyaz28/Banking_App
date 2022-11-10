@@ -3,7 +3,7 @@ import { formatNumber, getDateToday } from "./UtilityFunctions";
 import { Notif } from "./Notif";
 
 export const TransferPage = (props) => {
-    const {isClient, client, setClient} = props;
+    const {isClient, client} = props;
     const [users, setUsers] = useState(props.users); 
     const [receivers, setReceivers] = useState(users);
     const [sender, setSender] = useState( isClient ? client : {balance: 0});
@@ -79,7 +79,7 @@ export const TransferPage = (props) => {
                     if(user.balance - amount >= 0) {
                         user.balance -= amount;
 
-                        const transDate = new Date();
+                    
                         console.log(user.transactions);
                         user.transactions.unshift({
                             title: `Fund transfer to ${receiver.fullname} #${receiver.number}`, 
@@ -156,7 +156,7 @@ export const TransferPage = (props) => {
                 <input type="text" className="right" value={formatNumber(sender.balance)} disabled />
 
                 <label>Amount to Transfer</label>
-                <input type="text" name="amount" value={formatNumber(transferAmount)} onChange={onTransfer} autoComplete="off" className="right big-input" />
+                <input type="text" name="amount" value={formatNumber(transferAmount)} onChange={onTransfer} className="right big-input" />
 
                 <div className="transfer-icon"><i className='bx bx-down-arrow-alt'></i></div>
                 <h2>Receiver</h2>
