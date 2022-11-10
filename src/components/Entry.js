@@ -3,21 +3,21 @@ import { Login } from './login';
 import DATA from '../data';
 import { Dashboard } from './Dashboard';
 import {UserDashboard} from './UserDashboard';
-import { containsNumbers,onlyLettersAndNumbers } from './UtilityFunctions';
+import { containsNumbers} from './UtilityFunctions';
 
 const emailValidation = (username) =>
 {  
   const len = username.length
   if(len <=5) return false;
   
-  return username.includes("@") && username.slice(len-4); 
+  return username.includes("@") && username.slice(len-4) === ".com"; 
 }
 const passwordValidation = (password) =>
 {  
   const len = password.length
   if(len <=5) return false;
   
-  return containsNumbers(password)  && !onlyLettersAndNumbers(password)
+  return containsNumbers(password)
 }
 
 export const Entry = () => {

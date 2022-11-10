@@ -8,7 +8,7 @@ const emailValidation = (username) =>
   const len = username.length
   if(len <=5) return false;
   
-  return username.includes("@") && username.slice(len-4); 
+  return username.includes("@") && username.slice(len-4) === ".com"; 
 }
 const passwordValidation = (password) =>
 {  
