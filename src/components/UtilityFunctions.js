@@ -84,3 +84,11 @@ export function getDateToday() {
     const transDate = new Date();
     return `${transDate.toLocaleString("en-us", { month: "long" })} ${transDate.getDay()}, ${transDate.getFullYear()}`;
 }
+
+export function containsNumbers(str) {
+    return /[0-9]/.test(str);
+  }
+
+  export function onlyLettersAndNumbers(str) {  
+	return /^[A-Za-z0-9]*$/.test(str);  
+}

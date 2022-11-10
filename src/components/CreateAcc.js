@@ -1,6 +1,22 @@
 import React,{ useState } from "react";
 import {trim, formatNumber} from './UtilityFunctions';
 import { Notif } from "./Notif";
+import { containsNumbers,onlyLettersAndNumbers } from './UtilityFunctions';
+
+const emailValidation = (username) =>
+{  
+  const len = username.length
+  if(len <=5) return false;
+  
+  return username.includes("@") && username.slice(len-4); 
+}
+const passwordValidation = (password) =>
+{  
+  const len = password.length
+  if(len <=5) return false;
+  
+  return containsNumbers(password)  && !onlyLettersAndNumbers(password)
+}
 
 export const CreateAcc = (props) => {
     const createRandomAccount = () => {
@@ -25,14 +41,26 @@ export const CreateAcc = (props) => {
                 alreadyExists = true;
             }
         });
-
+       const flag1=emailValidation(user.email)
+       const flag2 =passwordValidation(user.password)
         if(alreadyExists) {
             setNotif({message: 'This email already exists. Try again.', style: 'danger'});
             return false;
         } else if(emptyInputs.length > 0) {
             setNotif({message: 'All fields are required.', style: 'danger'});
             return false;
-        } else {
+        } 
+        else if ( !flag1 )
+        {
+            setNotif({message: 'Username must contain @ and .com ', style: 'danger'});
+            return false;
+        }
+        else if ( !flag2 )
+        {
+            setNotif({message: 'password must have length greater than 5 and atleast one number and one non alphanumeric', style: 'danger'});
+            return false;
+        }
+        else {
             setNotif('');
             localUsers.unshift(user);
             props.setUsers(localUsers); 
