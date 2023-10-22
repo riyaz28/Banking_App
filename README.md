@@ -6,7 +6,5 @@ Main contributors:
 4.Dakshayani
 5.Riyaz
 
-Note:
-In this project, we are using the local web browser storage for storing user data.
 
-PPT link - https://docs.google.com/presentation/d/1hrpnVzTTCiuI3KP3C2WlET-jOPSXXB11_DvShYn7jwM/edit?usp=drivesdk
+Project description - https://docs.google.com/presentation/d/1hrpnVzTTCiuI3KP3C2WlET-jOPSXXB11_DvShYn7jwM/edit?usp=drivesdk
